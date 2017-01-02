@@ -121,7 +121,28 @@ void convexHull(Point points[], int *no, int n, int l, int r)
  
    // If modified array of points has less than 3 points,
    // convex hull is not possible
-   if (m < 3) return;
+   int ok=0;
+   if (m < 3) {
+         if(l == 0 && r == num-1){
+     ok=1;
+     printf("程convex hull:\n");
+   }
+   else if(l == 0&&r == (num-1)/2){
+     ok=1;
+     printf("程Ωㄖ玡left convex hull:\n");
+   }
+   else if(l == ((num-1)/2+1)&&r == num-1){
+     ok=1;
+     printf("程Ωㄖ玡right convex hull:\n");
+   }
+   if(ok==1){
+   cout << "郴翴计:" << m << endl; 
+   for(int e=0;e<m;e++){
+   	     cout << "NO." << points[e].no << "(" << points[e].x << ", " << points[e].y <<")" << endl;     
+       }
+       }
+         return;
+   }
  
    // Create an empty stack and push first three points
    // to it.
@@ -142,7 +163,7 @@ void convexHull(Point points[], int *no, int n, int l, int r)
    }
  
    // Now stack has the output points, print contents of stack
-   int ok=0;
+   ok=0;
    if(l == 0 && r == num-1){
      ok=1;
      printf("程convex hull:\n");

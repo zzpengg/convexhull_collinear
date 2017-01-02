@@ -119,7 +119,28 @@ void convexHull(Point points[], int *no, int n, int l, int r)
  
    // If modified array of points has less than 3 points,
    // convex hull is not possible
-   if (m < 3) return;
+   int ok=0;
+   if (m < 3) {
+         if(l == 0 && r == num-1){
+     ok=1;
+     printf("程convex hull:\n");
+   }
+   else if(l == 0&&r == (num-1)/2){
+     ok=1;
+     printf("程Ωㄖ玡left convex hull:\n");
+   }
+   else if(l == ((num-1)/2+1)&&r == num-1){
+     ok=1;
+     printf("程Ωㄖ玡right convex hull:\n");
+   }
+   if(ok==1){
+   cout << "郴翴计:" << m << endl; 
+   for(int e=0;e<m;e++){
+   	     cout << "NO." << points[e].no << "(" << points[e].x << ", " << points[e].y <<")" << endl;     
+       }
+       }
+         return;
+   }
  
    // Create an empty stack and push first three points
    // to it.
@@ -140,7 +161,7 @@ void convexHull(Point points[], int *no, int n, int l, int r)
    }
  
    // Now stack has the output points, print contents of stack
-   int ok=0;
+   ok=0;
    if(l == 0 && r == num-1){
      ok=1;
      printf("程convex hull:\n");
@@ -153,6 +174,7 @@ void convexHull(Point points[], int *no, int n, int l, int r)
      ok=1;
      printf("程Ωㄖ玡right convex hull:\n");
    }
+
    double strr[2000][3];
    int cc=0;
    while (!S.empty() && ok==1 )
@@ -164,25 +186,24 @@ void convexHull(Point points[], int *no, int n, int l, int r)
        S.pop();
        cc++;
    }
-   if(ok==1){
-   
-   cout << "郴翴计:" << cc << endl; 
-   for(int e=cc-1;e>=0;e--){
-     cout << "NO." << strr[e][0] << "(" << strr[e][1] << ", " << strr[e][2] <<")" << endl;
-   }
-   int ccc=0;
-   double temp[100][3];
-   for(int e=0;e<n;e++){
-   	 if(points[e].x == points[0].x){
-   	   temp[ccc][0] = points[e].no;
-   	   temp[ccc][1] = points[e].x;
-   	   temp[ccc][2] = points[e].y;
-       ccc++;
-     }
-   }
-   for(int e=1;e<ccc-1;e++){
-   	 cout << "NO." << temp[e][0] << "(" << temp[e][1] << ", " << temp[e][2] <<")" << endl;     
-   }
+   if(ok==1){   
+       cout << "郴翴计:" << cc << endl; 
+       for(int e=cc-1;e>=0;e--){
+         cout << "NO." << strr[e][0] << "(" << strr[e][1] << ", " << strr[e][2] <<")" << endl;
+       }
+       int ccc=0;
+       double temp[100][3];
+       for(int e=0;e<n;e++){
+   	     if(points[e].x == points[0].x){
+   	       temp[ccc][0] = points[e].no;
+   	       temp[ccc][1] = points[e].x;
+   	       temp[ccc][2] = points[e].y;
+           ccc++;
+         }
+       }
+       for(int e=1;e<ccc-1;e++){
+   	     cout << "NO." << temp[e][0] << "(" << temp[e][1] << ", " << temp[e][2] <<")" << endl;     
+       }
    }
    ok=0;
 }
